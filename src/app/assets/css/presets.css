@@ -1,0 +1,93 @@
+.transition-instant {
+  transition: 0s;
+}
+.transition-medium {
+  transition: 0.5s;
+}
+.transition-long {
+  transition: 1s;
+}
+
+/* Button designs */
+.primary-btn {
+  padding: 0.5em 0px 0.5em 0px;
+  background-color: var(--tertiary-color);
+  border-radius: 50px;
+  border: none;
+
+  font-weight: bold;
+
+  transition: 0.5s;
+}
+.primary-btn:hover {
+  background-color: white;
+}
+.primary-btn:hover * {
+  color: var(--tertiary-color);
+}
+.primary-btn:hover img {
+  filter: invert(17%) sepia(95%) saturate(3885%) hue-rotate(343deg)
+    brightness(91%) contrast(96%);
+}
+
+.secondary-btn {
+  background-color: var(--secondary-color);
+  border: 1px solid var(--tertiary-color);
+  border-radius: 10px;
+  color: var(--tertiary-color);
+  padding: 0.5em 1em 0.5em 1em;
+
+  transition: 0.5s;
+}
+.secondary-btn.white {
+  color: white;
+}
+.secondary-btn:hover {
+  background-color: var(--tertiary-color);
+  color: var(--secondary-color);
+}
+.secondary-btn.white:hover {
+  background-color: white;
+}
+
+/* Button hover effects */
+.hover {
+  transition: 0.5s;
+  cursor: pointer;
+}
+.hover.scale:hover {
+  transform: scale(115%);
+}
+.hover.to-primary-bg:hover {
+  background-color: var(--primary-color);
+}
+.hover.to-secondary-bg:hover {
+  background-color: var(--secondary-color);
+}
+.hover.to-tertiary-bg:hover {
+  background-color: var(--tertiary-color);
+}
+.hover.to-white-bg:hover {
+  background-color: white;
+}
+.hover.to-black-bg:hover {
+  background-color: black;
+}
+.hover.to-transparent-bg:hover {
+  background-color: transparent;
+}
+.hover.to-primary-fg:hover {
+  color: var(--primary-color);
+}
+.hover.to-secondary-fg:hover {
+  color: var(--secondary-color);
+}
+.hover.to-tertiary-fg:hover {
+  color: var(--tertiary-color);
+}
+.hover.to-white-fg:hover {
+  color: white;
+}
+.hover.to-black-fg:hover {
+  color: black;
+}

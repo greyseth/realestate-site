@@ -1,0 +1,75 @@
+form {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  padding: 2em;
+}
+.form-illustration-container {
+  padding: 2em;
+}
+.form-illustration-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  background-image: radial-gradient(
+    ellipse farthest-corner at 45px 45px,
+    rgba(50, 50, 50, 0.8) 0%,
+    rgba(80, 80, 80, 0.2)
+  );
+  border-radius: 50%;
+}
+.form-item-container {
+  padding: 2em;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.form-item-container > h2 {
+  font-size: 2em;
+  margin-bottom: 1.5em;
+}
+.form-item-container > input,
+.form-item > input {
+  width: 100%;
+  padding: 1em;
+  margin-bottom: 1em;
+
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+  border: none;
+  font-size: 1em;
+}
+.form-item.inline {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2em;
+}
+.form-item.inline > input {
+  width: 75%;
+}
+.form-item.password > img {
+  width: 15%;
+}
+.form-item-container > button {
+  width: 100%;
+  padding: 1em;
+  border-radius: 10px;
+}
+.nav-notice {
+  margin-top: 2em;
+  text-align: left;
+  width: 100%;
+  font-size: 1em;
+}
+.nav-notice a {
+  margin-left: 1em;
+  color: var(--tertiary-color);
+  text-decoration: none;
+}

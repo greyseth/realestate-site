@@ -1,0 +1,257 @@
+.search-container {
+  width: 100%;
+  height: 50em;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.search-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 50em;
+  z-index: -1;
+
+  filter: brightness(0.65);
+}
+.search-container h1,
+.search-container p {
+  width: 55%;
+  text-align: center;
+}
+.search-container p:nth-child(3) {
+  margin-bottom: 8em;
+}
+.search-container h1 {
+  font-size: 4.5em;
+}
+.search {
+  width: 65%;
+  padding: 0.75em;
+
+  background-color: var(--primary-color);
+  border-radius: 100px;
+
+  display: grid;
+  grid-template-columns: 1fr 12%;
+}
+.search input {
+  background: none;
+  border: none;
+  padding: 0.5em;
+  border-radius: 100px 0px 0px 100px;
+  font-size: large;
+}
+.search input:focus {
+  outline: none;
+}
+.search button * {
+  display: inline;
+  vertical-align: middle;
+  margin: 0.25em;
+}
+
+/* Quick Options */
+.quickopt-container {
+  width: 100%;
+  padding: 2em;
+  margin-bottom: 5em;
+
+  overflow: auto;
+
+  display: flex;
+  justify-content: center;
+  gap: 3em;
+}
+.quickopt-card {
+  background-color: var(--secondary-color);
+  border-radius: 20px;
+
+  width: 425px;
+  padding: 2em;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.quickopt-card img {
+  display: block;
+  width: 200px;
+  height: auto;
+  margin-bottom: 1.5em;
+}
+.quickopt-card .title {
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}
+.quickopt-card .description {
+  font-size: 1em;
+  margin-bottom: 3em;
+  width: 80%;
+  text-align: center;
+}
+
+/* Feats */
+.feats-title {
+  width: 100%;
+  padding: 0px 2em 0px 2em;
+
+  display: grid;
+  grid-template-columns: 35% 1fr;
+  gap: 15%;
+
+  margin-bottom: 2em;
+}
+.feats-title *:first-child {
+  text-align: center;
+  font-size: 2.5em;
+}
+.feats-container {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 50% 1fr;
+  gap: 1em;
+
+  padding: 2em;
+  margin-bottom: 5em;
+}
+/* TODO: change background color on hover */
+.feats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+}
+.feats div {
+  background-color: var(--secondary-color);
+  padding: 1.5em;
+  border-radius: 25px;
+}
+.feats div.boldened {
+  background-color: white;
+}
+.feats div.boldened * {
+  color: black;
+}
+.feats div * {
+  transition: 0.5s;
+}
+.feats div:hover * {
+  transform: scale(115%) translateX(10%);
+}
+.feats div p:first-child {
+  font-size: 3.5em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+.feats-image img {
+  display: block;
+  width: 80%;
+  height: auto;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  border-radius: 25px;
+}
+
+.network-container {
+  width: 100%;
+  padding: 2em 10em 2em 10em;
+  margin-bottom: 8em;
+
+  position: relative;
+}
+.network-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.network-container .location-container {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.location-container img {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  transition: 0.5s;
+}
+.location-container img:hover {
+  transform: scale(140%);
+}
+
+.reviews-title {
+  width: 100%;
+  padding: 0px 18em 0px 18em;
+
+  margin-bottom: 5em;
+}
+.reviews-title * {
+  width: 100%;
+  text-align: center;
+}
+
+.reviews-container {
+  width: 100%;
+  padding: 0px 5em 0px 5em;
+  margin-bottom: 10em;
+}
+.review-row {
+  gap: 1em;
+  margin-bottom: 1em;
+}
+.review {
+  background-color: var(--secondary-color);
+  border-radius: 25px;
+
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2em;
+}
+.review .pic-container {
+  width: 100%;
+}
+.review .review-nopic {
+  aspect-ratio: 1/1;
+  width: 4.25em;
+  height: auto;
+
+  background-color: white;
+  border-radius: 50%;
+  /* margin-bottom: 2.5em; */
+}
+.pic-container img {
+  aspect-ratio: 1/1;
+  width: 4.25em;
+  height: auto;
+
+  border-radius: 50%;
+  background-size: contain;
+}
+.review .content {
+  width: 100%;
+  margin-bottom: 2em;
+}
+.review .author {
+  font-weight: bold;
+}
+.review .misc {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

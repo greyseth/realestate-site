@@ -76,18 +76,23 @@
 .hover.to-transparent-bg:hover {
   background-color: transparent;
 }
-.hover.to-primary-fg:hover {
+.hover.to-primary-fg:hover,
+.hover.to-primary-fg:hover > * {
   color: var(--primary-color);
 }
-.hover.to-secondary-fg:hover {
+.hover.to-secondary-fg:hover,
+.hover.to-secondary-fg:hover > * {
   color: var(--secondary-color);
 }
-.hover.to-tertiary-fg:hover {
+.hover.to-tertiary-fg:hover,
+.hover.to-tertiary-fg:hover > * {
   color: var(--tertiary-color);
 }
-.hover.to-white-fg:hover {
+.hover.to-white-fg:hover,
+.hover.to-white-fg:hover > * {
   color: white;
 }
-.hover.to-black-fg:hover {
+.hover.to-black-fg:hover,
+.hover.to-black-fg:hover > * {
   color: black;
 }

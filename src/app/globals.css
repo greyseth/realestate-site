@@ -34,7 +34,7 @@ header {
   height: var(--header-height);
   padding: 1em;
 
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   box-shadow: 0px 11px 20px rgba(0, 0, 0, 0.25);
 
   display: flex;
@@ -79,6 +79,18 @@ header .nav {
 header .nav a {
   color: var(--tertiary-color);
   text-decoration: none;
+}
+header .account-container {
+  width: 10%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+header .account-container img {
+  border-radius: 50%;
+}
+header .account-container:hover {
+  cursor: pointer;
 }
 
 /* Footer */
@@ -126,6 +138,30 @@ footer {
 }
 .cursor-box:hover {
   cursor: default;
+}
+
+/* Spinny loading */
+.loading {
+  display: block;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+
+  animation: loading-spinn 1s linear infinite;
+}
+.loading-container {
+  width: 100%;
+}
+.loading-container > .loading {
+  margin-left: auto;
+  margin-right: auto;
+}
+@keyframes loading-spinn {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* User Message */
@@ -195,9 +231,15 @@ footer {
 }
 .svg-black {
 }
+.svg-gray {
+  filter: invert(53%) sepia(1%) saturate(2045%) hue-rotate(18deg)
+    brightness(96%) contrast(85%);
+}
 .svg-primary {
 }
 .svg-secondary {
+  filter: invert(14%) sepia(5%) saturate(682%) hue-rotate(177deg)
+    brightness(99%) contrast(98%);
 }
 .svg-tertiary {
   filter: invert(17%) sepia(95%) saturate(3885%) hue-rotate(343deg)

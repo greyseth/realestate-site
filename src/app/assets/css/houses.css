@@ -1,0 +1,176 @@
+:root {
+  --listing-padding: 4em;
+}
+
+.listing-title {
+  width: 100%;
+  padding: var(--listing-padding);
+
+  margin-bottom: 0.85em;
+}
+
+.listing-loading {
+  width: 100%;
+  text-align: center;
+}
+.listing-separator {
+  width: 100%;
+  height: 1px;
+  margin-top: 2em;
+
+  background-color: gray;
+}
+.listing-separator-container {
+  width: 100%;
+  padding-left: var(--listing-padding);
+  padding-right: var(--listing-padding);
+  margin-top: 2em;
+}
+.listing-separator-container > div {
+  background-color: gray;
+  height: 1px;
+  width: 100%;
+}
+
+.listing-header {
+  width: 100%;
+  padding-right: var(--listing-padding);
+  padding-left: var(--listing-padding);
+
+  display: flex;
+  justify-content: space-between;
+}
+.listing-header .search-bar {
+  width: 80%;
+  padding: 0.5em;
+  padding-left: 1.5em;
+  background-color: var(--secondary-color);
+
+  border-radius: 100px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.search-bar input {
+  background: none;
+  font-size: 1.5em;
+  border: none;
+  width: 100%;
+}
+.search-bar input:focus {
+  outline: none;
+}
+.search-bar img {
+  background-color: var(--tertiary-color);
+
+  aspect-ratio: 1/1;
+  height: 100%;
+  width: auto;
+  padding: 1em;
+  border-radius: 50%;
+}
+.listing-header .dropdown {
+  padding: 1em;
+}
+
+.main-content {
+  margin-top: 5em;
+  padding-left: var(--listing-padding);
+  padding-right: var(--listing-padding);
+
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  gap: 2em;
+}
+
+/* Sidebar */
+aside {
+  background-color: var(--secondary-color);
+  padding: 1em;
+  border-radius: 10px;
+}
+aside h2,
+aside ul {
+  margin-bottom: 1em;
+  list-style: none;
+}
+
+.house-list {
+  list-style: none;
+}
+.house-item {
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+
+  display: grid;
+  grid-template-columns: 40% 1fr;
+  margin-bottom: 2em;
+}
+.house-item > img {
+  width: 100%;
+  height: 100%;
+
+  border-radius: 10px 0px 0px 10px;
+}
+.house-item > div {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.date-created-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1em;
+  margin-bottom: 1em;
+}
+.date-created-container > p {
+  color: gray;
+}
+.price {
+  font-size: 2em;
+}
+.price,
+.promo-price {
+  margin-bottom: 1em;
+}
+.name-container {
+  margin-bottom: 2em;
+}
+.name-container > * {
+  font-size: 1.5em;
+}
+.controls {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.controls > button {
+  background-color: #25d366;
+  color: white;
+  padding: 1em;
+  border-radius: 10px;
+  border: none;
+  font-size: 1em;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5em;
+}
+.owner-preview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+}
+.owner-preview img {
+  display: block;
+  margin-left: auto;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+}

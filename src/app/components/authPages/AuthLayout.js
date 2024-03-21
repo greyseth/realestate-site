@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Message from "../Message";
 import { get, post } from "../../API/API";
+import { useRouter } from "next/navigation";
 
 export default function AuthLayout({ type }) {
   const [message, setMessage] = useState(undefined);
@@ -64,6 +65,8 @@ function RegisterForm({ type, setMessage }) {
   const [isLoading, setIsLoading] = useState(false);
 
   const [formData, setFormData] = useState({});
+
+  const router = useRouter();
 
   useEffect(() => {
     setFormData({
@@ -140,7 +143,7 @@ function RegisterForm({ type, setMessage }) {
     setIsLoading(false);
 
     //Perform login here
-    console.log("logging in...");
+    router.push("/");
   }
 
   return (
@@ -236,7 +239,26 @@ function LoginForm({ type, setMessage }) {
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const router = useRouter();
+
   async function handleLogin() {
+    if (!email || !password.content) {
+      setMessage({
+        message: "Semua field harus terisi",
+        type: "error",
+        buttons: [
+          {
+            display: "Tutup",
+            action: function () {
+              setMessage(undefined);
+            },
+          },
+        ],
+      });
+
+      return;
+    }
+
     setIsLoading(true);
 
     const request = await post("/users/login", {
@@ -245,7 +267,22 @@ function LoginForm({ type, setMessage }) {
     });
 
     //Perform login here
-    console.log(request);
+    if (request.success) {
+      router.push("/");
+    } else {
+      setMessage({
+        message: "Password dan/atau email salah",
+        type: "notice",
+        buttons: [
+          {
+            display: "Tutup",
+            action: function () {
+              setMessage(undefined);
+            },
+          },
+        ],
+      });
+    }
 
     setIsLoading(false);
   }

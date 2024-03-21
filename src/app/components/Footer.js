@@ -14,11 +14,11 @@ const footerLinks = [
   },
   {
     display: "Jual Rumah",
-    url: "/jual",
+    url: "/houses/jual",
   },
   {
     display: "Sewa Rumah",
-    url: "/sewa",
+    url: "/houses/sewa",
   },
   {
     display: "Iklankan Rumah",

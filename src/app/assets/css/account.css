@@ -1,0 +1,55 @@
+.account-page {
+  width: 100%;
+
+  padding: 5em 5em 0em 5em;
+}
+.account-page > h1 {
+  margin-bottom: 2.5em;
+}
+
+.account-content-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 35%;
+  gap: 2em;
+}
+
+.account-field {
+  width: 100%;
+  margin-bottom: 1.5em;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.account-field .field-header {
+  font-size: 1.25em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+.account-field input {
+  background: var(--secondary-color);
+  border: none;
+  font-size: 1em;
+  padding: 0.5em;
+  transition: 0.5s;
+}
+.account-field input:focus {
+  outline: none;
+  border-bottom: 2px var(--tertiary-color) solid;
+  transition: 0.5s;
+}
+
+.account-pfp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+}
+.account-pfp > img {
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  width: 65%;
+  height: auto;
+  border-radius: 50%;
+}

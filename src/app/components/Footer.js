@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useCookies } from "react-cookie";
 
 const footerLinks = [
   {
@@ -29,15 +30,27 @@ const footerLinks = [
 export default function Footer() {
   const pathname = usePathname();
 
+  const [cookies, setCookies, removeCookies] = useCookies();
+  const router = useRouter();
+
   return (
     <footer>
       <div className="footer-container">
         <div>
           <p>Tertarik Untuk Mulai Bersama Kami?</p>
-          <p>Dame da ne dame yo dame da no yo anta ga suki de sugi sugite</p>
+          {/* TODO: Change this placeholder text */}
+          {/* Can't because the designers didn't fuckig put anything here */}
+          <p style={{ width: "90%", textWrap: "wrap" }}>
+            Wow breaking the law breaking the world kowase kirisake tenderness
+            wow breaking the rule roppou zenshou ga shiba renai
+          </p>
           <button
             className="primary-btn hover scale to-white-bg to-tertiary-fg"
             style={{ padding: "1em", borderRadius: "10px" }}
+            onClick={(e) => {
+              if (!cookies.login) router.push("/auth/login");
+              else router.push("/houses/new");
+            }}
           >
             Mulai Sekarang
           </button>

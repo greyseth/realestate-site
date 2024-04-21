@@ -4,6 +4,7 @@
 */
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function QuickOptCards({ cards }) {
   return (
@@ -16,13 +17,15 @@ export default function QuickOptCards({ cards }) {
 }
 
 function Card({ card }) {
+  const router = useRouter();
+
   return (
     <div className="quickopt-card">
       <Image src={card.img} alt="illustration" />
       <p className="title">{card.title}</p>
       <p className="description">{card.description}</p>
       <button
-        onClick={card.action}
+        onClick={(e) => router.push(card.destination)}
         className="secondary-btn hover scale"
         style={{ fontSize: "1em" }}
       >

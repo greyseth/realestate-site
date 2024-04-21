@@ -15,6 +15,8 @@ import FeatsImg from "./assets/img/feats.jpg";
 import NetworkLocations from "./components/main/NetworkLocations";
 import CursorBox from "./components/CursorBox";
 import Reviews from "./components/main/Reviews";
+import { useCookies } from "react-cookie";
+import { useRouter } from "next/navigation";
 
 //Modify this static variable to add more "quick option" cards
 const quickOptCards = [
@@ -24,9 +26,7 @@ const quickOptCards = [
     description:
       "Temukan tempat Anda dengan pengalaman foto yang mendalam dan daftar properti terbanyak, termasuk hal-hal yang tidak akan Anda temukan di tempat lain",
     btn: "Telusuri Rumah",
-    action: function (e) {
-      //Button function goes here like this
-    },
+    destination: "/houses/jual",
   },
   {
     img: QuickOptSewa,
@@ -34,7 +34,7 @@ const quickOptCards = [
     description:
       "Kami sedang menciptakan pengalaman online yang mulus mulai dari berbelanja di jaringan rental terbesar, hingga mengajukan, hingga membayar sewa.",
     btn: "Temukan Penawaran",
-    action: function (e) {},
+    destination: "/houses/sewa",
   },
 ];
 
@@ -59,7 +59,16 @@ const feats = [
 ];
 
 export default function MainPage() {
+  const [search, setSearch] = useState();
+
   const [cursor, setCursor] = useState({ show: false, msg: "" });
+  const [cookies, setCookies, removeCookies] = useCookies();
+  const router = useRouter();
+
+  function handleSearch() {
+    setCookies("searchQuery", search, { path: "/" });
+    router.push("/houses/jual");
+  }
 
   return (
     <>
@@ -81,11 +90,17 @@ export default function MainPage() {
         <div className="search">
           <input
             type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             placeholder="Cari lokasi, keyword, atau area yang ingin kamu cari"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleSearch();
+            }}
           />
           <button
             className="primary-btn hover scale"
             style={{ padding: "1em" }}
+            onClick={handleSearch}
           >
             <Image src={SearchIcon} alt="Search Icon" />
             <p>Cari</p>

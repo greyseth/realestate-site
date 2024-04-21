@@ -48,6 +48,9 @@
   grid-template-rows: 1fr 1fr;
   gap: 1em;
 }
+.images-container img:hover {
+  cursor: pointer;
+}
 .images *:first-child {
   border-radius: var(--images-border-radius) 0px 0px 0px;
 }
@@ -63,12 +66,16 @@
 .images * {
   aspect-ratio: 1/1;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 .thumbnail * {
   border-radius: var(--images-border-radius);
+  object-fit: cover;
 
+  /* This is bad but fuck you */
   width: 100%;
+  height: 450px;
 }
 .placeholder-img {
   padding: 1em;
@@ -167,4 +174,67 @@
 }
 .house-info-footer .secondary-btn {
   width: fit-content;
+}
+
+.image-view {
+  width: 100%;
+  height: calc(100vh - var(--header-height));
+
+  padding: 2em;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 1001;
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  flex-direction: column;
+}
+.image-container {
+  width: 100%;
+  height: 100%;
+  padding: 1em;
+
+  border: 1px solid white;
+  border-radius: 15px;
+
+  overflow: auto;
+}
+.image-container img {
+  height: 100%;
+  display: block;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+.image-back {
+  position: absolute;
+  top: 2em;
+  left: 2em;
+}
+
+.tag-container {
+  width: 100%;
+
+  display: flex;
+  gap: 0.5em;
+  align-items: flex-start;
+}
+
+.edit-btn {
+  background-color: var(--tertiary-color);
+  opacity: 0.5;
+
+  padding: 0.75em;
+  border-radius: 50%;
+
+  position: fixed;
+  bottom: 4em;
+  right: 4em;
+
+  transition: 0.5s;
+}
+.edit-btn:hover {
+  opacity: 1;
 }

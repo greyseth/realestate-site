@@ -10,6 +10,7 @@ export default function Avatar({ filename }) {
       width={75}
       height={75}
       className={!filename ? "svg-white" : null}
+      alt="Profile Picture"
     />
   );
 }

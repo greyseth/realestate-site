@@ -11,6 +11,7 @@ import Link from "next/link";
 import Message from "../Message";
 import { get, post } from "../../API/API";
 import { useRouter } from "next/navigation";
+import { useCookies } from "react-cookie";
 
 export default function AuthLayout({ type }) {
   const [message, setMessage] = useState(undefined);
@@ -67,6 +68,8 @@ function RegisterForm({ type, setMessage }) {
   const [formData, setFormData] = useState({});
 
   const router = useRouter();
+
+  const [cookies, setCookies, removeCookies] = useCookies();
 
   useEffect(() => {
     setFormData({
@@ -140,10 +143,20 @@ function RegisterForm({ type, setMessage }) {
       console.log(request);
     }
 
-    setIsLoading(false);
+    setCookies(
+      "login",
+      {
+        login_id: request.login_id,
+        login_token: request.login_token,
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+      },
+      { path: "/" }
+    );
 
-    //Perform login here
     router.push("/");
+
+    setIsLoading(false);
   }
 
   return (
@@ -240,6 +253,7 @@ function LoginForm({ type, setMessage }) {
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
+  const [cookies, setCookies, removeCookies] = useCookies();
 
   async function handleLogin() {
     if (!email || !password.content) {
@@ -269,6 +283,17 @@ function LoginForm({ type, setMessage }) {
     //Perform login here
     if (request.success) {
       router.push("/");
+      setCookies(
+        "login",
+        {
+          login_id: request.data.user_id,
+          login_token: request.data.login_token,
+          first_name: request.data.first_name,
+          last_name: request.data.last_name,
+          avatar: request.data.avatar,
+        },
+        { path: "/" }
+      );
     } else {
       setMessage({
         message: "Password dan/atau email salah",

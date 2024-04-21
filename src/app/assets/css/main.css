@@ -122,7 +122,6 @@
   padding: 2em;
   margin-bottom: 5em;
 }
-/* TODO: change background color on hover */
 .feats {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -132,11 +131,13 @@
   background-color: var(--secondary-color);
   padding: 1.5em;
   border-radius: 25px;
+  transition: 0.5s;
+  user-select: none;
 }
-.feats div.boldened {
+.feats div:hover {
   background-color: white;
 }
-.feats div.boldened * {
+.feats div:hover * {
   color: black;
 }
 .feats div * {

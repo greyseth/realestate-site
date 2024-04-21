@@ -4,10 +4,27 @@ import DropdownIcon from "../../assets/img/icons/dropdown_icon.svg";
 import DateCreatedIcon from "../../assets/img/icons/refresh.svg";
 import MajimaChan from "../../assets/img/majima.jpeg";
 import WhatsappIcon from "../../assets/img/icons/whatsapp.svg";
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export default function HouseItem({ house }) {
+  const [promoPrice, setPromoPrice] = useState(0);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (house.promo) {
+      setPromoPrice(house.price - (house.price * house.promo) / 100);
+    }
+  }, []);
+
   return (
-    <li className="house-item">
+    <li
+      className="house-item hover"
+      onClick={(e) => {
+        router.push("/house/" + house.house_id);
+      }}
+    >
       <Image
         src={"http://localhost:3001/houses/image/" + house.thumbnail}
         width={150}
@@ -20,7 +37,14 @@ export default function HouseItem({ house }) {
         </div>
         {house.promo ? (
           <h2 className="price">
-            <s>Rp. {house.price} / Tahun</s>
+            <s>
+              {" "}
+              {new Intl.NumberFormat("en-ID", {
+                style: "currency",
+                currency: "IDR",
+              }).format(house.price)}{" "}
+              / Tahun
+            </s>
           </h2>
         ) : (
           <h2 className="price">
@@ -33,10 +57,10 @@ export default function HouseItem({ house }) {
         )}
         {house.promo ? (
           <p className="promo-price">
-            {house.promo}% OFF! Rp.{" "}
-            {new Intl.NumberFormat("en-IN", {
+            {house.promo}% OFF! IDR{" "}
+            {new Intl.NumberFormat("en-ID", {
               maximumSignificantDigits: 3,
-            }).format(house.price)}{" "}
+            }).format(promoPrice)}{" "}
             / Tahun
           </p>
         ) : null}
@@ -54,7 +78,12 @@ export default function HouseItem({ house }) {
             {house.phone}
           </button>
 
-          <div className="owner-preview">
+          <div
+            className="owner-preview"
+            onClick={(e) => {
+              router.push("/account/" + house.user_id);
+            }}
+          >
             <div>
               <Image
                 src={"http://localhost:3001/users/avatar/" + house.avatar}

@@ -4,15 +4,14 @@ import NetworkBG from "../../assets/img/property_network.svg";
 import LocationIcon from "../../assets/img/icons/location_indicator.svg";
 import { useEffect } from "react";
 
-//TODO: Change these values to percents instead of pixels
 const locations = [
-  { x: 500, y: 500, name: "Place 1" },
-  { x: 850, y: 450, name: "Place 2" },
-  { x: 300, y: 480, name: "Place 3" },
-  { x: 900, y: 500, name: "Place 4" },
-  { x: 550, y: 350, name: "Place 5" },
-  { x: 750, y: 700, name: "Place 6" },
-  { x: 1050, y: 750, name: "Place 7" },
+  { x: 25, y: 50, name: "Place 1" },
+  { x: 32, y: 55, name: "Place 2" },
+  { x: 50, y: 75, name: "Place 3" },
+  { x: 75, y: 45, name: "Place 4" },
+  { x: 60, y: 50, name: "Place 5" },
+  { x: 38, y: 32, name: "Place 6" },
+  { x: 35, y: 75, name: "Place 7" },
 ];
 
 export default function NetworkLocations({ setCursor }) {
@@ -42,7 +41,7 @@ function Location({ pos, setCursor }) {
   return (
     <Image
       src={LocationIcon}
-      style={{ left: pos.x, top: pos.y }}
+      style={{ left: pos.x + "%", top: pos.y + "%" }}
       className="location-icon"
       alt="location pointer"
       id={pos.name}

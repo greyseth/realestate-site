@@ -6,9 +6,11 @@ import Loading from "@/app/components/Loading";
 import { get, post } from "@/app/API/API";
 import { useRouter } from "next/navigation";
 import Message from "@/app/components/Message";
+import { useCookies } from "react-cookie";
 
 export default function EditHous({ params }) {
   const router = useRouter();
+  const [cookies, setCookies, removeCookies] = useCookies();
 
   const [message, setMessage] = useState();
   const [imageInputAmount, setImageInputAmount] = useState([0, 1, 2, 3]);
@@ -17,6 +19,7 @@ export default function EditHous({ params }) {
   const [photos, setPhotos] = useState([]);
   const [thumbnail, setThumbnail] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [tags, setTags] = useState([]);
 
   async function handleUpdate() {
     setIsLoading(true);
@@ -31,6 +34,7 @@ export default function EditHous({ params }) {
       thumbnail: thumbnail,
     };
     if (promo) reqParams.promo = promo;
+    if (tags.length > 0) reqParams.tags = tags;
 
     const request = await post("/houses/update/" + params.houseId, reqParams);
     if (request.error) {
@@ -59,6 +63,26 @@ export default function EditHous({ params }) {
     console.log(request);
 
     setIsLoading(false);
+  }
+
+  async function handleDelete() {
+    const result = await post("/houses/delete/" + params.houseId, {
+      login_token: cookies.login.login_token,
+    });
+    if (result.success) {
+      router.push("/houses/" + cookies.lastPage ?? "sewa");
+    } else {
+      setMessage({
+        type: "error",
+        message: "Sebuah kesalahan telah terjadi saat menghapus. Coba Lagi?",
+        buttons: [
+          { display: "Ulangi", action: () => handleDelete() },
+          { display: "Tutup", action: () => setMessage(undefined) },
+        ],
+      });
+
+      console.log(result);
+    }
   }
 
   useEffect(() => {
@@ -173,6 +197,15 @@ export default function EditHous({ params }) {
             </div>
           </section>
 
+          <div className="submit-container">
+            <h2 style={{ marginBottom: "1em" }}>Tags</h2>
+            <HouseTags
+              house_id={params.houseId}
+              tags={tags}
+              setTags={setTags}
+            />
+          </div>
+
           <section className="submit-container">
             <button
               className="primary-btn hover scale to-tertiary-fg"
@@ -189,19 +222,10 @@ export default function EditHous({ params }) {
             <button
               className="primary-btn hover scale to-tertiary-fg"
               style={{ borderRadius: "10px", padding: "1em", fontSize: "1em" }}
+              onClick={handleDelete}
             >
               Hapus Rumah
             </button>
-            {/* <button
-              className="primary-btn hover scale to-tertiary-fg"
-              style={{ borderRadius: "10px", padding: "1em", fontSize: "1em" }}
-              onClick={(e) => {
-                console.log(photos);
-                console.log(thumbnail);
-              }}
-            >
-              Log Data
-            </button> */}
           </section>
         </div>
       )}
@@ -249,7 +273,7 @@ function ImageInput({
 
       if (result.success) {
         if (!thumbnail) {
-          const newPhotos = photos.slice(photosIndex);
+          let newPhotos = photos;
           newPhotos[photosIndex] = { name: result.image };
 
           setPhotos(newPhotos);
@@ -324,6 +348,105 @@ function ImageInput({
           disabled={uploading}
           onChange={(e) => setFile(e.target.files[0])}
         />
+      )}
+    </div>
+  );
+}
+
+function HouseTags({ house_id, tags, setTags }) {
+  const [newTagInput, setNewTagInput] = useState(false);
+  const [tagInput, setTagInput] = useState("New Tag");
+  const [loading, setLoading] = useState(true);
+
+  const [cookies, setCookies, removeCookies] = useCookies();
+
+  useEffect(() => {
+    async function getTags() {
+      const result = await get("/houses/tags/" + house_id);
+
+      if (result) {
+        if (result.empty) {
+          setTags([]);
+          setLoading(false);
+          return;
+        }
+
+        if (!result.error) {
+          setTags(result);
+          setLoading(false);
+        }
+      }
+    }
+
+    getTags();
+  }, []);
+
+  useEffect(() => {
+    if (newTagInput) document.querySelector("#taginput").select();
+  }, [newTagInput]);
+
+  return (
+    <div>
+      {loading ? (
+        <div className="loading-container">
+          <Loading width={"75px"} height={"auto"} />
+        </div>
+      ) : (
+        <div className="tag-container">
+          {tags ? (
+            tags.map((t, i) => {
+              return (
+                <p
+                  key={i}
+                  className="secondary-btn hover"
+                  style={{ border: "none", borderRadius: "5px" }}
+                  onClick={(e) => {
+                    setTags(tags.filter((tt) => tt !== t));
+                  }}
+                >
+                  {t}
+                </p>
+              );
+            })
+          ) : (
+            <p>No Tags Found</p>
+          )}
+
+          {newTagInput ? (
+            <input
+              type="text"
+              className="secondary-btn"
+              id="taginput"
+              value={tagInput}
+              onChange={(e) => {
+                setTagInput(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  let tags2 = tags;
+                  tags2.push(tagInput);
+                  setTags(tags2);
+
+                  setNewTagInput(false);
+                  setTagInput("New Tag");
+                } else if (e.key === "Escape") {
+                  setNewTagInput(false);
+                  setTagInput("New Tag");
+                }
+              }}
+            />
+          ) : (
+            <p
+              className="secondary-btn hover"
+              style={{ border: "none", borderRadius: "5px" }}
+              onClick={(e) => {
+                setNewTagInput(true);
+              }}
+            >
+              +
+            </p>
+          )}
+        </div>
       )}
     </div>
   );

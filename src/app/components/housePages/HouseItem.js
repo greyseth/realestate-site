@@ -27,8 +27,8 @@ export default function HouseItem({ house }) {
     >
       <Image
         src={"http://localhost:3001/houses/image/" + house.thumbnail}
-        width={150}
-        height={150}
+        width={300}
+        height={300}
       />
       <div>
         <div className="date-created-container">

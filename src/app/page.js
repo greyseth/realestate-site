@@ -17,6 +17,7 @@ import CursorBox from "./components/CursorBox";
 import Reviews from "./components/main/Reviews";
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/navigation";
+import Promotions from "./components/main/Promotions";
 
 //Modify this static variable to add more "quick option" cards
 const quickOptCards = [
@@ -108,7 +109,7 @@ export default function MainPage() {
         </div>
       </section>
 
-      <QuickOptCards cards={quickOptCards} />
+      {cookies.login ? <Promotions /> : <QuickOptCards cards={quickOptCards} />}
 
       <div className="feats-title">
         <h2>Advisor Properti Terpercaya</h2>

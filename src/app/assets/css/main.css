@@ -97,6 +97,67 @@
   text-align: center;
 }
 
+/* Promotions */
+.promotions-container {
+  width: 100%;
+  padding: 2em;
+  margin-bottom: 5em;
+
+  overflow-x: auto;
+
+  display: flex;
+  justify-content: flex-start;
+  gap: 3em;
+}
+.promotion-card {
+  flex-shrink: 0;
+  background-color: var(--secondary-color);
+  border-radius: 20px;
+
+  width: 350px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.promotion-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 20px 20px 0px 0px;
+  transition: 0.5s;
+}
+.promotion-card:hover > img {
+  border-radius: 20px;
+  transform: scale(110%);
+}
+.promotion-card .content {
+  width: 100%;
+  padding: 1em;
+}
+.content .listing {
+  font-size: 1em;
+  color: var(--tertiary-color);
+  margin-bottom: 1em;
+}
+.content .name {
+  font-size: 1.25em;
+  margin-bottom: 0.5em;
+}
+.content .new-price {
+  font-size: 1.5em;
+}
+.content .price {
+  font-size: 0.85em;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1em;
+}
+.content .location {
+  margin-top: 1em;
+}
+
 /* Feats */
 .feats-title {
   width: 100%;

@@ -9,6 +9,8 @@ const footerLinks = [
     display: "SerasiHunian",
     url: "/",
   },
+  //These 2 still dont have acctual pages 😩😩😩
+  //but fuck it, it looks so goddamn empty without them
   {
     display: "Email Marketing",
     url: "/marketing",

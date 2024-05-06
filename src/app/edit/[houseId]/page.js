@@ -15,6 +15,19 @@ export default function EditHous({ params }) {
   const [message, setMessage] = useState();
   const [imageInputAmount, setImageInputAmount] = useState([0, 1, 2, 3]);
 
+  const [houseName, setHouseName] = useState();
+  const [houseTown, setHouseTown] = useState();
+  const [houseType, setHouseType] = useState();
+  const [houseListing, setHouseListing] = useState();
+  const [housePrice, setHousePrice] = useState();
+
+  const [roomCount, setRoomCount] = useState();
+  const [bathroomCount, setBathroomCount] = useState();
+  const [electricity, setElectricity] = useState();
+  const [landArea, setLandArea] = useState();
+  const [buildingArea, setBuildingArea] = useState();
+  const [certificate, setCertificate] = useState();
+
   const [promo, setPromo] = useState();
   const [photos, setPhotos] = useState([]);
   const [thumbnail, setThumbnail] = useState();
@@ -32,6 +45,17 @@ export default function EditHous({ params }) {
     let reqParams = {
       photos: newPhotos,
       thumbnail: thumbnail,
+      name: houseName,
+      city: houseTown,
+      type: houseType,
+      room_count: roomCount,
+      bathroom_count: bathroomCount,
+      electricity: electricity,
+      land_area: landArea,
+      building_area: buildingArea,
+      certificate: certificate,
+      listing: houseListing,
+      price: housePrice,
     };
     if (promo) reqParams.promo = promo;
     if (tags.length > 0) reqParams.tags = tags;
@@ -128,6 +152,40 @@ export default function EditHous({ params }) {
         return;
       }
 
+      const result3 = await get("/houses/id/" + params.houseId);
+      if (result3.error) {
+        setMessage({
+          type: "error",
+          message: "Sebuah kesalahan terjadi...",
+          buttons: [
+            { display: "Ulangi", action: () => fetchData() },
+            {
+              display: "Kembali",
+              action: () => {
+                router.push("/house/" + params.houseId);
+              },
+            },
+          ],
+        });
+
+        console.log(result3);
+        return;
+      }
+
+      setHouseName(result3.name);
+      setHouseTown(result3.city);
+      setHouseType(result3.type);
+      setHouseListing(result3.listing);
+      setHousePrice(result3.price);
+      setPromo(result3.promo);
+
+      setRoomCount(result3.room_count);
+      setBathroomCount(result3.bathroom_count);
+      setElectricity(result3.electricity);
+      setLandArea(result3.land_area);
+      setBuildingArea(result3.building_area);
+      setCertificate(result3.certificate);
+
       setPhotos(["", "", "", ""]);
       setPhotos((prev) => {
         let newPhotos = prev;
@@ -166,10 +224,115 @@ export default function EditHous({ params }) {
             <h1>Mengedit Rumah</h1>
 
             <SpecsInput
+              display={"Ubah Nama Rumah"}
+              data={houseName}
+              setData={setHouseName}
+              text={true}
+            />
+            <SpecsInput
+              display={"Ubah Kota Lokasi"}
+              data={houseTown}
+              setData={setHouseTown}
+              text={true}
+            />
+
+            <div className="specs-input">
+              {houseType ? (
+                <p style={{ marginBottom: ".25em" }}>Tipe Rumah</p>
+              ) : null}
+              <select
+                onChange={(e) => setHouseType(e.target.value)}
+                className="hover"
+              >
+                <option
+                  selected={houseType === "Townhouse" ? true : false}
+                  value={"Townhouse"}
+                >
+                  Townhouse
+                </option>
+                <option
+                  selected={houseType === "Rumah Subsidi" ? true : false}
+                  value={"Rumah Subsidi"}
+                >
+                  Rumah Subsidi
+                </option>
+                <option
+                  selected={houseType === "Rumah Kosan" ? true : false}
+                  value={"Rumah Kosan"}
+                >
+                  Rumah Kosan
+                </option>
+              </select>
+            </div>
+
+            <div className="specs-input">
+              {houseListing ? (
+                <p style={{ marginBottom: ".25em" }}>Listing Rumah</p>
+              ) : null}
+              <select
+                onChange={(e) => setHouseListing(e.target.value)}
+                className="hover"
+              >
+                <option
+                  selected={houseListing === "sewa" ? true : false}
+                  value={"sewa"}
+                >
+                  Disewakan
+                </option>
+                <option
+                  selected={houseListing === "jual" ? true : false}
+                  value={"jual"}
+                >
+                  Dijual
+                </option>
+              </select>
+            </div>
+
+            <SpecsInput
+              display={"Ubah Harga Rumah Permanen (Rp)"}
+              data={housePrice}
+              setData={setHousePrice}
+            />
+
+            <SpecsInput
               display={"Tambahkan Promo Harga (%)"}
               data={promo}
               setData={setPromo}
             />
+
+            <div className="specs-container">
+              <SpecsInput
+                display={"Jumlah Ruangan"}
+                data={roomCount}
+                setData={setRoomCount}
+              />
+              <SpecsInput
+                display={"Jumlah Kamar Mandi"}
+                data={bathroomCount}
+                setData={setBathroomCount}
+              />
+              <SpecsInput
+                display={"Daya Listrik"}
+                data={electricity}
+                setData={setElectricity}
+              />
+              <SpecsInput
+                display={"Luas Tanah"}
+                data={landArea}
+                setData={setLandArea}
+              />
+              <SpecsInput
+                display={"Luas Bangunan"}
+                data={buildingArea}
+                setData={setBuildingArea}
+              />
+              <SpecsInput
+                display={"Sertifikat"}
+                data={certificate}
+                setData={setCertificate}
+                text={true}
+              />
+            </div>
           </section>
 
           <section className="new-images-container">

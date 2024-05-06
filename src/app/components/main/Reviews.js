@@ -2,7 +2,11 @@ import StarFull from "../../assets/img/icons/star_full.svg";
 import StarHalf from "../../assets/img/icons/star_half.svg";
 import StarNone from "../../assets/img/icons/star_none.svg";
 import Quote from "../../assets/img/icons/quote.svg";
+
 import Majima from "../../assets/img/majima.jpeg";
+import Snake from "../../assets/img/snake.jpg";
+import Yu from "../../assets/img/yuu.png";
+import Ocelot from "../../assets/img/ocelot.jpg";
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -18,7 +22,7 @@ const reviews = [
     size: "full",
   },
   {
-    picture: "",
+    picture: Snake,
     author: "Hafidz Syahputra",
     content:
       "Memberikan informasi yang jelas dan akurat tentang properti yang tersedia. Membuat saya merasa percaya dan nyaman",
@@ -27,14 +31,14 @@ const reviews = [
   },
   {
     author: "Hafidz Syahputra",
-    picture: "",
+    picture: Ocelot,
     content:
       "Memberikan informasi yang jelas dan akurat tentang properti yang tersedia. Membuat saya merasa percaya dan nyaman",
     stars: [1, 1, 1, 1, 0],
     size: "half",
   },
   {
-    picture: "",
+    picture: Yu,
     author: "Dzakwa Alrafi Hansya",
     content:
       "Saya sangat puas dengan pengalaman menggunakan jasa mereka. Situs webnya intuitif dan mudah digunakan, memudahkan saya untuk menemukan properti yang sesuai dengan kebutuhan saya",

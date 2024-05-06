@@ -20,7 +20,7 @@ export default function Promotions() {
   }, []);
 
   return (
-    <section>
+    <section suppressHydrationWarning>
       <h1 style={{ marginLeft: "5em" }}>Hot Deals 🔥🔥🔥🗣️🗣️</h1>
       <div
         className="promotions-container"
